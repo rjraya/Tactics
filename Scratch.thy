@@ -16,14 +16,20 @@ begin
   this theorem with n = 9 and m = 3 and returns it. The simplifier then knows that if it can
   prove that "3 * 3 ≡ 9", then it can rewrite "sqrt 9" to "3".
 *)
+
+
 lemma sqrt_numeral_simproc_aux:
+  fixes m n :: num
   assumes "m * m ≡ n"
-  shows   "sqrt (numeral n :: real) ≡ numeral m"
+  shows   "sqrt (numeral n) ≡ numeral m"
 proof -
   have "numeral n ≡ numeral m * (numeral m :: real)" by (simp add: assms [symmetric])
   moreover have "sqrt … ≡ numeral m" by (subst real_sqrt_abs2) simp
   ultimately show "sqrt (numeral n :: real) ≡ numeral m" by simp
 qed
+
+lemma "sqrt () = (3::int)"
+  using sqrt_numeral_simproc_aux by simp
 
 (*
   We could just as well have used this theorem instead. Since we now work on real numbers instead
@@ -162,6 +168,12 @@ fun sqrt_simproc ctxt ct =
 ML_val ‹
   sqrt_simproc @{context} @{cterm "sqrt 16"}
 ›
+
+simproc_setup sqrt_simp ("sqrt n") = ‹K sqrt_simproc›
+
+lemma "sqrt 16 = 4"
+  by simp
+
 
 (*
 val it =
