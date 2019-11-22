@@ -91,6 +91,7 @@ fun rewrite_sine ctxt ct =
     val ik2 = SOME (Thm.cterm_of ctxt (HOLogic.mk_number HOLogic.intT (k div 2)))
     val cx = SOME( Thm.cterm_of ctxt x)
   in    
+    
     SOME (Thm.instantiate' [] [rk,ik2,cx] @{thm rewrite_sine_1})    
   end
 \<close>
@@ -101,13 +102,34 @@ rewrite_sine @{context} @{cterm "sin(x+8*pi+pi/2)"}
 
 simproc_setup sine1 ("sin(x+a*pi+pi/2)") = \<open>K rewrite_sine\<close>
 
-(* this should be handled by sine1 only, but is not *)
+(* 
+
+Here simproc is not called because simprocs are only called after exhausting all ‘normal’ rewriting, 
+
+The goal is immediately rewritten to sin (17 * pi / 2 + x) = cos x.
+
+Since the simproc does not match that goal anymore, it is not called.
+
+ *)
 lemma "sin(x+8*pi+pi/2) = cos(x)"
   apply simp
   sorry
 
-(* this should be handled by sine1 only, but is not *)
+(* 
+Here simproc is called (verify this inserting e.g. a val _ = @{print} "foo" in the let block) 
+
+It indeed produces a rewrite rule which has the precondition 8 \<equiv> 2 * real_of_int 4.
+
+This cannot be solved by simp using only the basic simpset HOL_basic_ss, so it fails.
+
+using [[simp_trace, simp_trace_depth_limit = 100]]
+
+allows to see the simplifier trace.
+
+ *)
 lemma "sin(x+8*pi+pi/2) = cos(x)"
+  apply(tactic \<open>simp_tac (put_simpset HOL_basic_ss @{context} addsimprocs [@{simproc sine1}]) 1\<close>)
+  using [[simp_trace, simp_trace_depth_limit = 100]]
   apply(tactic \<open>simp_tac (put_simpset HOL_basic_ss @{context} addsimprocs [@{simproc sine1}]) 1\<close>)
   sorry
 
@@ -160,38 +182,21 @@ section \<open>Experiments\<close>
 lemma "sin(x+pi/2) = cos(x)"
   by simp
 
-(* this should be handled by sine1 only, but is not *)
-lemma "sin(x+8*pi+pi/2) = cos(x)"
-  apply(tactic \<open>simp_tac (put_simpset HOL_basic_ss @{context} addsimprocs [@{simproc sine1}]) 1\<close>)
-  sorry
-
-(* Now we need to study the simplifier *)
-
-ML \<open>
-fun rewrite_sine' ctxt ct =
-  let
-    val sum = ct |> Thm.term_of |> dest_comb |> snd 
-    val x = sum |> dest_comb |> fst |> dest_comb |> snd 
-    val k = sum |> dest_comb |> snd |> dest_comb |> fst 
-            |> dest_comb |> snd |> dest_comb |> snd |> HOLogic.dest_numeral
-    val rk = SOME (Thm.cterm_of ctxt (HOLogic.mk_number HOLogic.realT k))
-    val ik2 = SOME (Thm.cterm_of ctxt (HOLogic.mk_number HOLogic.intT (k div 2)))
-    val cx = SOME( Thm.cterm_of ctxt x)
-  in                                                   
-    SOME (Thm.instantiate' [] [rk,ik2,cx] @{thm rewrite_sine_2})    
-  end
-\<close>
-
-ML \<open>
-rewrite_sine' @{context} @{cterm "sin(x+1222222222*pi)"}
-\<close>
-
-simproc_setup sine2 ("sin(x+a*pi)") = \<open>K rewrite_sine'\<close>
-
 lemma "sin(x+8*pi) = sin(x)"
   by simp
 
-(* or just observe to what things the simplifier rewrites useful terms *)
+(* 
+
+Follow-up:
+
+1. Do it the right way (using conversions):
+
+https://stackoverflow.com/questions/58859417/rewriting-sine-using-simprocs-in-isabelle
+
+2. Taylor tactic (a more elaborate tactic)
+
+
+*)
 
 
 
