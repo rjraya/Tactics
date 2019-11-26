@@ -1,4 +1,4 @@
-theory Tactics
+theory Experiment1
  imports Main "HOL-Analysis.Analysis" "HOL.Numeral_Simprocs" "HOL-Number_Theory.Number_Theory"
 begin
 
@@ -60,7 +60,7 @@ lemma "sin(x+8*pi+pi/2) = cos x"
                 [@{thm cos_periods[of 8 "8 div 2",simplified]}] 1
              THEN simp_tac @{context} 1
              THEN simp_tac @{context} 1\<close>)
-  
+
 ML \<open>
 let
   val ctxt = @{context}

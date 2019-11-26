@@ -1,4 +1,4 @@
-theory Tactics
+theory Experiment1
  imports Main "HOL-Analysis.Analysis" "HOL.Numeral_Simprocs" "HOL-Number_Theory.Number_Theory"
 begin
 
