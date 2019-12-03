@@ -1,0 +1,31 @@
+theory Rewriter
+  imports Main "HOL-Library.Rewrite"
+begin
+
+(* The rewrite method also has an ML interface *)
+lemma
+  assumes "\<And>a b. P ((a + 1) * (1 + b)) "
+  shows "\<And>a b :: nat. P ((a + 1) * (b + 1))"
+  apply (tactic \<open>
+    let
+      val (x, ctxt) = yield_singleton Variable.add_fixes "x" \<^context>
+      (* Note that the pattern order is reversed *)
+      val pat = [
+        Rewrite.For [(x, SOME \<^typ>\<open>nat\<close>)],
+        Rewrite.In,
+        Rewrite.Term (@{const plus(nat)} $ Free (x, \<^typ>\<open>nat\<close>) $ \<^term>\<open>1 :: nat\<close>, [])]
+      val to = NONE
+    in CCONVERSION (Rewrite.rewrite_conv ctxt (pat, to) @{thms add.commute}) 1 end
+  \<close>)
+  apply (fact assms)
+  done
+
+thm add.commute
+lemma
+  assumes "\<And>a b. P ((a + 1) * (1 + b)) "
+  shows "\<And>a b :: nat. P ((a + 1) * (b + 1))"
+  apply(rewrite at "y + 1" in for (y) add.commute)
+  apply(fact assms)
+  done
+
+end
