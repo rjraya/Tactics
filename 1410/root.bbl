@@ -1,0 +1,156 @@
+\begin{thebibliography}{10}
+\providecommand{\bibitemdeclare}[2]{}
+\providecommand{\surnamestart}{}
+\providecommand{\surnameend}{}
+\providecommand{\urlprefix}{Available at }
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\href}[2]{\texttt{#2}}
+\providecommand{\urlalt}[2]{\href{#1}{#2}}
+\providecommand{\doi}[1]{doi:\urlalt{http://dx.doi.org/#1}{#1}}
+\providecommand{\bibinfo}[2]{#2}
+
+\bibitemdeclare{inproceedings}{Aspinall:TACAS:2000}
+\bibitem{Aspinall:TACAS:2000}
+\bibinfo{author}{David \surnamestart Aspinall\surnameend}
+  (\bibinfo{year}{2000}): \emph{\bibinfo{title}{{Proof General}: A Generic Tool
+  for Proof Development}}.
+\newblock In \bibinfo{editor}{Susanne \surnamestart Graf\surnameend} \&
+  \bibinfo{editor}{Michael \surnamestart Schwartzbach\surnameend}, editors:
+  {\sl \bibinfo{booktitle}{European Joint Conferences on Theory and Practice of
+  Software (ETAPS)}}, {\sl \bibinfo{series}{LNCS}} \bibinfo{volume}{1785},
+  \bibinfo{publisher}{Springer}, \doi{10.1007/3-540-46419-0\_3}.
+
+\bibitemdeclare{inproceedings}{Hupel:2014}
+\bibitem{Hupel:2014}
+\bibinfo{author}{Lars \surnamestart Hupel\surnameend} (\bibinfo{year}{2014}):
+  \emph{\bibinfo{title}{Interactive Simplifier Tracing and Debugging in
+  Isabelle}}.
+\newblock In \bibinfo{editor}{Stephen~M. \surnamestart Watt\surnameend},
+  \bibinfo{editor}{James~H. \surnamestart Davenport\surnameend},
+  \bibinfo{editor}{Alan~P. \surnamestart Sexton\surnameend},
+  \bibinfo{editor}{Petr \surnamestart Sojka\surnameend} \&
+  \bibinfo{editor}{Josef \surnamestart Urban\surnameend}, editors: {\sl
+  \bibinfo{booktitle}{Intelligent Computer Mathematics (CICM 2014)}}, {\sl
+  \bibinfo{series}{LNCS}} \bibinfo{volume}{8543},
+  \bibinfo{publisher}{Springer}, \doi{10.1007/978-3-319-08434-3\_24}.
+
+\bibitemdeclare{inproceedings}{Lueth-Ring:2013}
+\bibitem{Lueth-Ring:2013}
+\bibinfo{author}{Christoph \surnamestart L{\"u}th\surnameend} \&
+  \bibinfo{author}{Martin \surnamestart Ring\surnameend}
+  (\bibinfo{year}{2013}): \emph{\bibinfo{title}{A Web Interface for {Isabelle}:
+  The Next Generation}}.
+\newblock In \bibinfo{editor}{Jacques \surnamestart Carette\surnameend} et~al.,
+  editors: {\sl \bibinfo{booktitle}{Intelligent Computer Mathematics (CICM
+  2013)}}, {\sl \bibinfo{series}{LNCS}} \bibinfo{volume}{7961},
+  \bibinfo{publisher}{Springer}, \doi{10.1007/978-3-642-39320-4\_22}.
+
+\bibitemdeclare{inproceedings}{Lueth-Ring:2014}
+\bibitem{Lueth-Ring:2014}
+\bibinfo{author}{Christoph \surnamestart L{\"u}th\surnameend} \&
+  \bibinfo{author}{Martin \surnamestart Ring\surnameend}
+  (\bibinfo{year}{2014}): \emph{\bibinfo{title}{Collaborative Interactive
+  Theorem Proving with {Clide}}}.
+\newblock In \bibinfo{editor}{Gerwin \surnamestart Klein\surnameend} \&
+  \bibinfo{editor}{Ruben \surnamestart Gamboa\surnameend}, editors: {\sl
+  \bibinfo{booktitle}{Interactive Theorem Proving (ITP 2014)}}, {\sl
+  \bibinfo{series}{LNCS}} \bibinfo{volume}{8558},
+  \bibinfo{publisher}{Springer}, \doi{10.1007/978-3-319-08970-6\_30}.
+
+\bibitemdeclare{proceedings}{AFP}
+\bibitem{AFP}
+\bibinfo{editor}{L.~C. \surnamestart Paulson\surnameend},
+  \bibinfo{editor}{T.~\surnamestart Nipkow\surnameend} \&
+  \bibinfo{editor}{G.~\surnamestart Klein\surnameend}, editors:
+  \emph{\bibinfo{title}{Archive of Formal Proofs}}.
+\newblock \bibinfo{note}{\url{http://afp.sourceforge.net/}}.
+
+\bibitemdeclare{inproceedings}{Wenzel:2009}
+\bibitem{Wenzel:2009}
+\bibinfo{author}{M.~\surnamestart Wenzel\surnameend} (\bibinfo{year}{2009}):
+  \emph{\bibinfo{title}{Parallel Proof Checking in {Isabelle/Isar}}}.
+\newblock In \bibinfo{editor}{G.~\surnamestart Dos~Reis\surnameend} \&
+  \bibinfo{editor}{L.~\surnamestart Th\'ery\surnameend}, editors: {\sl
+  \bibinfo{booktitle}{ACM SIGSAM Workshop on Programming Languages for
+  Mechanized Mathematics Systems (PLMMS 2009)}}, \bibinfo{publisher}{ACM
+  Digital Library}.
+
+\bibitemdeclare{inproceedings}{Wenzel:2011:CICM}
+\bibitem{Wenzel:2011:CICM}
+\bibinfo{author}{M.~\surnamestart Wenzel\surnameend} (\bibinfo{year}{2011}):
+  \emph{\bibinfo{title}{Isabelle as Document-oriented Proof Assistant}}.
+\newblock In \bibinfo{editor}{J.~H. \surnamestart Davenport\surnameend},
+  \bibinfo{editor}{W.~M. \surnamestart Farmer\surnameend},
+  \bibinfo{editor}{F.~\surnamestart Rabe\surnameend} \&
+  \bibinfo{editor}{J.~\surnamestart Urban\surnameend}, editors: {\sl
+  \bibinfo{booktitle}{Conference on Intelligent Computer Mathematics /
+  Mathematical Knowledge Management (CICM/MKM 2011)}}, {\sl
+  \bibinfo{series}{LNAI}} \bibinfo{volume}{6824},
+  \bibinfo{publisher}{Springer}, \doi{10.1007/978-3-642-22673-1\_17}.
+
+\bibitemdeclare{inproceedings}{Wenzel:2010}
+\bibitem{Wenzel:2010}
+\bibinfo{author}{Makarius \surnamestart Wenzel\surnameend}
+  (\bibinfo{year}{2010}): \emph{\bibinfo{title}{Asynchronous Proof Processing
+  with {Isabelle/Scala} and {Isabelle/jEdit}}}.
+\newblock In \bibinfo{editor}{C.~Sacerdoti \surnamestart Coen\surnameend} \&
+  \bibinfo{editor}{D.~\surnamestart Aspinall\surnameend}, editors: {\sl
+  \bibinfo{booktitle}{User Interfaces for Theorem Provers (UITP 2010)}},
+  \bibinfo{series}{ENTCS}, \doi{10.1016/j.entcs.2012.06.009}.
+
+\bibitemdeclare{inproceedings}{Wenzel:2012:CICM}
+\bibitem{Wenzel:2012:CICM}
+\bibinfo{author}{Makarius \surnamestart Wenzel\surnameend}
+  (\bibinfo{year}{2012}): \emph{\bibinfo{title}{{Isabelle/jEdit} --- a {Prover
+  IDE} within the {PIDE} framework}}.
+\newblock In \bibinfo{editor}{J.~\surnamestart Jeuring\surnameend} et~al.,
+  editors: {\sl \bibinfo{booktitle}{Conference on Intelligent Computer
+  Mathematics (CICM 2012)}}, {\sl \bibinfo{series}{LNAI}}
+  \bibinfo{volume}{7362}, \bibinfo{publisher}{Springer},
+  \doi{10.1007/978-3-642-31374-5\_38}.
+
+\bibitemdeclare{manual}{isabelle-jedit-manual}
+\bibitem{isabelle-jedit-manual}
+\bibinfo{author}{Makarius \surnamestart Wenzel\surnameend}
+  (\bibinfo{year}{2013}): \emph{\bibinfo{title}{Isabelle/jEdit}}.
+\newblock \bibinfo{organization}{Part of Isabelle distribution.}
+\newblock
+  \bibinfo{note}{\url{http://isabelle.in.tum.de/website-Isabelle2014/dist/Isab%
+elle2014/doc/jedit.pdf}}.
+
+\bibitemdeclare{inproceedings}{Wenzel:2012:UITP-EPTCS}
+\bibitem{Wenzel:2012:UITP-EPTCS}
+\bibinfo{author}{Makarius \surnamestart Wenzel\surnameend}
+  (\bibinfo{year}{2013}): \emph{\bibinfo{title}{{READ-EVAL-PRINT} in Parallel
+  and Asynchronous Proof-checking}}.
+\newblock In \bibinfo{editor}{Cezary \surnamestart Kaliszyk\surnameend} \&
+  \bibinfo{editor}{Christoph \surnamestart L{\"u}th\surnameend}, editors: {\sl
+  \bibinfo{booktitle}{User Interfaces for Theorem Provers (UITP 2012)}}, {\sl
+  \bibinfo{series}{EPTCS}} \bibinfo{volume}{118}, \doi{10.4204/EPTCS.118.4}.
+
+\bibitemdeclare{inproceedings}{Wenzel:2013:ITP}
+\bibitem{Wenzel:2013:ITP}
+\bibinfo{author}{Makarius \surnamestart Wenzel\surnameend}
+  (\bibinfo{year}{2013}): \emph{\bibinfo{title}{Shared-Memory Multiprocessing
+  for Interactive Theorem Proving}}.
+\newblock In \bibinfo{editor}{Sandrine \surnamestart Blazy\surnameend},
+  \bibinfo{editor}{Christine \surnamestart Paulin-Mohring\surnameend} \&
+  \bibinfo{editor}{David \surnamestart Pichardie\surnameend}, editors: {\sl
+  \bibinfo{booktitle}{Interactive Theorem Proving --- 4th International
+  Conference, ITP 2013, Rennes, France, July 22-26, 2013. Proceedings}}, {\sl
+  \bibinfo{series}{Lecture Notes in Computer Science}} \bibinfo{volume}{7998},
+  \bibinfo{publisher}{Springer}, \doi{10.1007/978-3-642-39634-2\_30}.
+
+\bibitemdeclare{inproceedings}{Wenzel:2014:ITP-PIDE}
+\bibitem{Wenzel:2014:ITP-PIDE}
+\bibinfo{author}{Makarius \surnamestart Wenzel\surnameend}
+  (\bibinfo{year}{2014}): \emph{\bibinfo{title}{Asynchronous User Interaction
+  and Tool Integration in {Isabelle/PIDE}}}.
+\newblock In \bibinfo{editor}{Gerwin \surnamestart Klein\surnameend} \&
+  \bibinfo{editor}{Ruben \surnamestart Gamboa\surnameend}, editors: {\sl
+  \bibinfo{booktitle}{Interactive Theorem Proving --- 5th International
+  Conference, ITP 2014, Vienna, Austria}}, {\sl \bibinfo{series}{Lecture Notes
+  in Computer Science}} \bibinfo{volume}{8558}, \bibinfo{publisher}{Springer},
+  \doi{10.1007/978-3-319-08970-6\_33}.
+
+\end{thebibliography}
