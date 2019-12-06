@@ -98,10 +98,32 @@ ML \<open>
 (* Gives the first subterm in a term *)
 fun first (t $ _) = first t
  | first t = t
+
+fun left ()
 \<close>
 
 ML \<open>
+first @{term "(1::real)+2"}
+\<close>
 
+ML \<open>
+if first @{term "(1::real)+2"} = Const ("Groups.plus_class.plus", HOLogic.realT --> HOLogic.realT --> HOLogic.realT) 
+then true else false;
+
+
+\<close>
+
+ML \<open>
+fun normalizer ct =
+ let
+  val t = Thm.term_of
+  val sum = Const ("Groups.plus_class.plus", HOLogic.realT --> HOLogic.realT --> HOLogic.realT) 
+  if fst t = sum 
+  then 
+  else
+    
+ in
+ end
 
 \<close>
 
@@ -114,7 +136,8 @@ fun descend_conv ctxt ct =
 \<close>
 
 ML \<open>
-Pattern.first_order_match
+Pattern.first_order_match;
+Pattern.matches
 \<close>
 
 ML \<open>

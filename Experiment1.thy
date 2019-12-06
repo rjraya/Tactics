@@ -97,7 +97,7 @@ fun rewrite_sine ctxt ct =
 \<close>
 
 ML \<open>
-rewrite_sine @{context} @{cterm "sin(x+8*pi+pi/2)"}
+rewrite_sine @{context} @{cterm "sin(x+8*pi+2*pi+pi/2)"}
 \<close>
 
 simproc_setup sine1 ("sin(x+a*pi+pi/2)") = \<open>K rewrite_sine\<close>

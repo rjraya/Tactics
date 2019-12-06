@@ -95,10 +95,14 @@ ML \<open>
 sin_term_conv @{context} @{cterm "(3::int)*pi+x+(2::int)*pi"}  
 \<close>
 
+ML \<open>
+sin_term_conv @{context} @{cterm "(3::int)*pi+x"}  
+\<close>
+
 (* Theorems for SIN_SIMPROC_ATOM *)
 
 lemma rewrite_sine_even:
-  fixes k' :: int and k :: int
+  fixes k k' :: int 
   assumes "k  \<equiv> 2 * of_int k'" 
   shows "sin(SIN_SIMPROC_ATOM x k) \<equiv> sin (x)" 
 proof -
@@ -117,41 +121,65 @@ proof -
     by auto
 qed
 
+lemma arg_cong_pure:
+  assumes "x \<equiv> y"
+  shows "f x \<equiv> f y"
+  using assms by simp
 
 lemma 
-  fixes x y :: real
-  assumes "x \<equiv> y"
-  shows "sin x = sin y"
-  by(simp add: arg_cong[OF meta_eq_to_obj_eq[OF assms], of sin])
-
-lemma
-  assumes "sin (x + real_of_int 8 * pi) = sin (SIN_SIMPROC_ATOM x 8)"
-  shows "sin (x + 8 * pi) = sin (SIN_SIMPROC_ATOM x 8)"
-  by (simp add: SIN_SIMPROC_ATOM_def)
-
-ML \<open>
-@{print} @{term "sin(x+(8::int)*pi)"}
-\<close>
+  assumes "sin (x + real_of_int 8 * pi) \<equiv> sin x"
+  shows "sin (x + 8 * pi) \<equiv> sin x"
+  apply(tactic \<open>Method.insert_tac @{context} @{thms assms} 1\<close>)
+  by simp
 
 ML \<open>
 fun rewrite_sine ctxt ct =
   let
-    val x = ct |> Thm.term_of |> dest_comb |> snd |> Thm.cterm_of ctxt;
-    val x_eq_ssa = sin_term_conv ctxt x
-    val (_,ssa) = Logic.dest_equals (Thm.prop_of x_eq_ssa)
-    val goal1 = HOLogic.mk_Trueprop (HOLogic.mk_eq (@{term "sin::real\<Rightarrow>real"} $ (Thm.term_of x),@{term "sin::real\<Rightarrow>real"} $ ssa))
-    val subst_lemma = @{thm arg_cong} OF [@{thm meta_eq_to_obj_eq} OF [x_eq_ssa]]
+    val sumt = ct |> Thm.term_of 
+    val sum = sumt |> dest_comb |> snd |> Thm.cterm_of ctxt;
+    val sum_eq_ssa = sin_term_conv ctxt sum
+    val (_,ssa) = Logic.dest_equals (Thm.prop_of sum_eq_ssa)
+    val sin_x = @{term "sin::real\<Rightarrow>real"} $ (Thm.term_of sum)
+    val sin_ssa = @{term "sin::real\<Rightarrow>real"} $ ssa
+    (* sin sum = sin (SIN_SIMPROC_ATOM x n)*)
+    val goal1 = Logic.mk_equals (sin_x,sin_ssa)
+    val subst_lemma = @{thm arg_cong_pure} OF [sum_eq_ssa]
     val inst_lemma = Thm.instantiate' [SOME @{ctyp "real"}] [SOME @{cterm "sin::real\<Rightarrow>real"}] subst_lemma
+    
     val thm1 = Goal.prove ctxt [] [] goal1
-            (fn _ => asm_full_simp_tac (ctxt addsimps [inst_lemma] @ @{thms SIN_SIMPROC_ATOM_def}) 1)
+            (fn _ => asm_full_simp_tac (ctxt addsimps [inst_lemma] @ @{thms SIN_SIMPROC_ATOM_def add.commute add.assoc}) 1)
+    
+    val (x,k) = case ssa of (@{term SIN_SIMPROC_ATOM} $ x' $ k') => (x',k')
+                         | _ => raise TERM ("term should be simproc_atom",[Thm.term_of sum])
+    val (_,kint) = k |> HOLogic.dest_number
+    (* even case *)    
+    val goal2 = Logic.mk_equals (sin_ssa,@{term "sin::real\<Rightarrow>real"} $ x)
+    val tac = Thm.instantiate' [] [SOME (Thm.cterm_of ctxt k), 
+                                   SOME (Thm.cterm_of ctxt (HOLogic.mk_number HOLogic.intT (kint div 2)))] 
+                                   @{thm rewrite_sine_even}
+    val thm2 = Goal.prove ctxt [] [] goal2
+            (fn _ => Method.rule_tac ctxt [tac] [] 1
+                     THEN asm_full_simp_tac ctxt 1)
+    (* transitive *)
+    val goal = Logic.mk_equals (sin_x,@{term "sin::real\<Rightarrow>real"} $ x)
+    val thm3 = @{thm Pure.transitive} OF [thm1] OF [thm2]
+    val _ = @{print} thm3
+    val thm = Goal.prove ctxt [] [] goal
+            (fn _ => Method.insert_tac ctxt [thm3] 1
+                     THEN asm_full_simp_tac (ctxt addsimps @{thms algebra_simps}) 1)
   in       
-    thm1
+    thm
   end
 \<close>
 
 ML \<open>
-rewrite_sine @{context} @{cterm "sin(x+(8::int)*pi)"}
+rewrite_sine @{context} @{cterm "sin((8::int)*pi+x)"}
 \<close>
+
+ML \<open>
+rewrite_sine @{context} @{cterm "sin((2::int)*pi+x+(8::int)*pi)"}
+\<close>
+
 
 simproc_setup sine1 ("sin(x+a*pi+pi/2)") = \<open>K rewrite_sine\<close>
 
