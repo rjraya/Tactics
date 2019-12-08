@@ -95,10 +95,15 @@ fun sin_term_conv ctxt ct =
               in
                 @{term "SIN_SIMPROC_ATOM"} $ farg $ sarg
               end
-          | _ => raise TERM ("sin_term_conv outputs a wrong conversion",[lconv,rconv])  
+          | _ => raise TERM ("sin_term_conv outputs a wrong conversion",[lconv,rconv]) 
       in
           Goal.prove ctxt [] [] (Logic.mk_equals (t,comb))
-                (fn _ => asm_full_simp_tac (ctxt addsimps @{thms SIN_SIMPROC_ATOM_def  algebra_simps}) 1)
+                (fn _ => Method.rule_tac ctxt @{thms HOL.eq_reflection} []  1
+                         THEN (simp_tac (put_simpset HOL_basic_ss ctxt addsimps 
+                               @{thms SIN_SIMPROC_ATOM_def Int.ring_1_class.of_int_numeral arith_simps}) 1
+                              THEN Lin_Arith.simple_tac ctxt 1)
+                         ORELSE simp_tac (put_simpset HOL_basic_ss ctxt addsimps 
+                               @{thms SIN_SIMPROC_ATOM_def Int.ring_1_class.of_int_numeral arith_simps}) 1)                   
       end
     | _ => sin_atom_conv ctxt ct
  in
@@ -107,30 +112,6 @@ fun sin_term_conv ctxt ct =
 \<close>
 
 subsection \<open>sin_term_conv tests\<close>
-
-ML \<open>
-Simplifier.simpset_of @{context}
-\<close>
-
-
-find_theorems "_ = _ \<Longrightarrow> _ \<equiv> _"
-
-lemma "x + (pi * 2 + pi * 3) \<equiv> x + pi * 5 "
-  apply(rule HOL.eq_reflection)
- 
-  apply(simp)
-  sorry
-
-find_theorems "numeral ?n + numeral ?m = _"
-
-
-lemma "real_of_int 3 * pi + x + real_of_int 2 * pi \<equiv> SIN_SIMPROC_ATOM x (3 + 2)"
-  using [[simp_trace, simp_trace_depth_limit = 100]]
-  apply(rule HOL.eq_reflection)
-  apply(rewrite SIN_SIMPROC_ATOM_def Int.ring_1_class.of_int_numeral numeral_plus_numeral)+
-  apply(tactic \<open>simp_tac (put_simpset HOL_basic_ss @{context} addsimps @{thms numeral_One Int.ring_1_class.of_int_numeral Num.mult_1s Pure.reflexive  
-    SIN_SIMPROC_ATOM_def algebra_simps Groups.ab_semigroup_mult_class.mult.commute arith_simps Fields.division_ring_class.divide_inverse semiring_norm rel_simps}) 1\<close>)
-  by simp
 
 ML \<open>
 sin_term_conv @{context} @{cterm "x+(2::int)*pi"}  
@@ -313,6 +294,16 @@ section \<open>Experiments\<close>
 
 simproc_setup sine1 ("sin(x)") = \<open>K rewrite_sine\<close>
 
+(*
+  To ensure that there is no looping, in rewrite_sine we only produce a theorem if the 
+  rewriting changes the argument:
+  
+  SIN x = SIN y
+
+  otherwise the tactic would loop since simproc_setup includes the simproc in the simpset
+  of the theory and the following commands would loop.
+*)
+
 ML \<open>
 rewrite_sine @{context} @{cterm "sin(x+(8::int)*pi)"}
 \<close>
@@ -321,23 +312,66 @@ ML \<open>
 rewrite_sine @{context} @{cterm "sin((8::int)*pi+(5::int)*pi+x+(y+(3::int)*pi))"}
 \<close>
 
-ML \<open>
-Simplifier.rewrite (put_simpset HOL_basic_ss @{context} addsimps 
-                      @{thms arith_simps even_numeral even_zero odd_numeral odd_one rel_simps Pure.reflexive}) @{cterm "(0::int) = 0"}
-\<close>                                 
-
+                               
+(*
+  Some commands showing that now the tactic works on concrete examples. 
+  We need to put the basic simpset since otherwise there is no good interaction with the
+  other rules in it.
+*)
 
 lemma 
   shows "sin(x+(8::int)*pi) = sin(x)"
-  using [[simp_trace, simp_trace_depth_limit = 100]]
   by(tactic \<open>simp_tac (put_simpset HOL_basic_ss @{context} addsimprocs [@{simproc sine1}]) 1\<close>) 
   
 lemma 
-  shows "sin(x+(8::int)*pi+(8::int)*pi) = sin(x)"
-  using [[simp_trace, simp_trace_depth_limit = 100]]
+  shows "sin(x+(8::int)*pi+(8::int)*pi) = sin(x)"  
+  by(tactic \<open>simp_tac (put_simpset HOL_basic_ss @{context} addsimprocs [@{simproc sine1}]) 1\<close>) 
   
-  apply(tactic \<open>simp_tac (put_simpset HOL_basic_ss @{context} addsimprocs [@{simproc sine1}]) 1\<close>) 
-  
+lemma 
+  shows "sin((8::int)*pi+x+(8::int)*pi) = sin(x)"  
+  by(tactic \<open>simp_tac (put_simpset HOL_basic_ss @{context} addsimprocs [@{simproc sine1}]) 1\<close>) 
 
+lemma 
+  shows "sin((10::int)*pi+(8::int)*pi+x+(8::int)*pi) = sin(x)"  
+  by(tactic \<open>simp_tac (put_simpset HOL_basic_ss @{context} addsimprocs [@{simproc sine1}]) 1\<close>)
+
+lemma 
+  shows "sin((8::int)*pi+(5::int)*pi+x+(y+((3::int)*pi)+(3::int)*pi)) = -sin(x+y)"
+  by(tactic \<open>simp_tac (put_simpset HOL_basic_ss @{context} addsimprocs [@{simproc sine1}]) 1\<close>)
+
+lemma 
+  shows "sin((8::int)*pi+(5::int)*pi+x+(y+((3::int)*pi)+(3::int)*pi)) = -sin(x+y)"
+  by(tactic \<open>simp_tac (put_simpset HOL_basic_ss @{context} addsimprocs [@{simproc sine1}]) 1\<close>)
+
+(*
+ TODO: we would like to handle the second equation in practice
+
+*)
+
+lemma "sin((8::int)*pi+(5::int)*pi+x+(y+((3::int)*pi)+(3::int)*pi)) = -sin(x+y)"
+  sorry
+
+lemma "sin(8*pi+5*pi+x+(y+(3*pi)+3*pi)) = -sin(x+y)"
+  sorry
+
+(*
+  I suggest to scan the tree looking for numeral :: num \<Rightarrow> real and substitute it
+  for of_int :: int \<Rightarrow> real followed by numeral :: num \<Rightarrow> int. Then implement a conversion
+  showing that this does not change the theorem using Int.ring_1_class.of_int_numeral.
+*)
+
+lemma "(7::real) = (of_int 7)"
+  using [[simp_trace, simp_trace_depth_limit = 100]]
+  by linarith
+
+ML \<open>
+@{term "(7::real) = (of_int 7)"}
+\<close>
+
+ML \<open>
+@{term "sin(8*pi) = a"}
+\<close>
+
+  
 
 end
