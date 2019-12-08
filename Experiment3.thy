@@ -1,5 +1,5 @@
 theory Experiment3
- imports Main "HOL-Analysis.Analysis" "HOL.Numeral_Simprocs" "HOL-Number_Theory.Number_Theory" 
+ imports Main "HOL-Analysis.Analysis" "HOL.Numeral_Simprocs" "HOL-Number_Theory.Number_Theory" "HOL-Library.Rewrite"
 begin
 
 (* 
@@ -9,14 +9,22 @@ https://stackoverflow.com/questions/58859417/rewriting-sine-using-simprocs-in-is
 
 *)
 
+section \<open>Simproc strategy\<close>
+
 definition "SIN_SIMPROC_ATOM x n = x + of_int n * pi"
 
+lemma ssa_0_n: "SIN_SIMPROC_ATOM 0 n \<equiv> n * pi"
+  unfolding SIN_SIMPROC_ATOM_def by simp
+
+lemma ssa_x_0: "SIN_SIMPROC_ATOM x 0 \<equiv> x"
+  unfolding SIN_SIMPROC_ATOM_def by simp
+
+subsection \<open>sin_atom_conv\<close>
 (* should we pattern match on a numeral or on an int ? *)
 ML \<open>
 fun sin_atom_conv ctxt ct =
  let 
   val t = ct |> Thm.term_of
-  (*val _ = @{print} t*)
   
   val ssa_term = 
     case t of (Const ("Groups.times_class.times", @{typ "real \<Rightarrow> real \<Rightarrow> real"}) $ 
@@ -26,14 +34,14 @@ fun sin_atom_conv ctxt ct =
           val goal = Logic.mk_equals (t, @{term "SIN_SIMPROC_ATOM 0"} $ t' ) 
         in 
           Goal.prove ctxt [] [] goal
-                (fn _ => simp_tac (ctxt addsimps @{thms SIN_SIMPROC_ATOM_def}) 1)
+                (fn _ => Method.rule_tac ctxt [@{thm ssa_0_n[symmetric]}] [] 1)
         end                 
     | x => 
         let 
           val goal = Logic.mk_equals (t, @{term "SIN_SIMPROC_ATOM"} $ x $ @{term "0::int"}  ) 
         in 
           Goal.prove ctxt [] [] goal
-                (fn _ => simp_tac (ctxt addsimps @{thms SIN_SIMPROC_ATOM_def}) 1)
+                (fn _ => Method.rule_tac ctxt [@{thm ssa_x_0[symmetric]}] [] 1)
         end
       
  in
@@ -41,12 +49,22 @@ fun sin_atom_conv ctxt ct =
  end
 \<close>
 
+subsection \<open>sin_atom_conv tests\<close>
+
 ML \<open>
 sin_atom_conv @{context} @{cterm "(2::int)*pi"}  
 \<close>
+
 ML \<open>
 sin_atom_conv @{context} @{cterm "x+2*pi"}  
 \<close>
+
+ML \<open>
+sin_atom_conv @{context} @{cterm "(2::int)*pi+x+(2::int)*pi"}  
+\<close>
+
+
+subsection \<open>sin_term_conv\<close>
 
 ML \<open>
 fun sin_term_conv ctxt ct =
@@ -56,6 +74,7 @@ fun sin_term_conv ctxt ct =
     case t of (Const ("Groups.plus_class.plus", @{typ "real \<Rightarrow> real \<Rightarrow> real"}) $ t1 $ t2) =>
       let
         val lconv = Thm.prop_of (sin_term_conv ctxt (Thm.cterm_of ctxt t1))
+
         val rconv = Thm.prop_of (sin_term_conv ctxt (Thm.cterm_of ctxt t2))
         val (_,t1') = Logic.dest_equals lconv
         val (_,t2') = Logic.dest_equals rconv
@@ -76,16 +95,42 @@ fun sin_term_conv ctxt ct =
               in
                 @{term "SIN_SIMPROC_ATOM"} $ farg $ sarg
               end
-          | _ => raise TERM ("sin_term_conv outputs a wrong conversion",[lconv,rconv])   
-      in        
+          | _ => raise TERM ("sin_term_conv outputs a wrong conversion",[lconv,rconv])  
+      in
           Goal.prove ctxt [] [] (Logic.mk_equals (t,comb))
-                (fn _ => asm_full_simp_tac (ctxt addsimps @{thms SIN_SIMPROC_ATOM_def algebra_simps}) 1)
+                (fn _ => asm_full_simp_tac (ctxt addsimps @{thms SIN_SIMPROC_ATOM_def  algebra_simps}) 1)
       end
     | _ => sin_atom_conv ctxt ct
  in
   res
  end
 \<close>
+
+subsection \<open>sin_term_conv tests\<close>
+
+ML \<open>
+Simplifier.simpset_of @{context}
+\<close>
+
+
+find_theorems "_ = _ \<Longrightarrow> _ \<equiv> _"
+
+lemma "x + (pi * 2 + pi * 3) \<equiv> x + pi * 5 "
+  apply(rule HOL.eq_reflection)
+ 
+  apply(simp)
+  sorry
+
+find_theorems "numeral ?n + numeral ?m = _"
+
+
+lemma "real_of_int 3 * pi + x + real_of_int 2 * pi \<equiv> SIN_SIMPROC_ATOM x (3 + 2)"
+  using [[simp_trace, simp_trace_depth_limit = 100]]
+  apply(rule HOL.eq_reflection)
+  apply(rewrite SIN_SIMPROC_ATOM_def Int.ring_1_class.of_int_numeral numeral_plus_numeral)+
+  apply(tactic \<open>simp_tac (put_simpset HOL_basic_ss @{context} addsimps @{thms numeral_One Int.ring_1_class.of_int_numeral Num.mult_1s Pure.reflexive  
+    SIN_SIMPROC_ATOM_def algebra_simps Groups.ab_semigroup_mult_class.mult.commute arith_simps Fields.division_ring_class.divide_inverse semiring_norm rel_simps}) 1\<close>)
+  by simp
 
 ML \<open>
 sin_term_conv @{context} @{cterm "x+(2::int)*pi"}  
@@ -99,16 +144,18 @@ ML \<open>
 sin_term_conv @{context} @{cterm "(3::int)*pi+x"}  
 \<close>
 
-(* Theorems for SIN_SIMPROC_ATOM *)
+subsection \<open>Theorems for SIN_SIMPROC_ATOM\<close>
 
 lemma rewrite_sine_even:
-  fixes k k' :: int 
-  assumes "k  \<equiv> 2 * of_int k'" 
+  assumes "even k" 
   shows "sin(SIN_SIMPROC_ATOM x k) \<equiv> sin (x)" 
-proof -
-  have "sin (x + k*pi) \<equiv> 
-        sin (x + k'*(2*pi))"
-    using assms by(simp add: algebra_simps)
+proof(rule HOL.eq_reflection)
+  obtain k' where k'_expr: "k = 2 * k'"
+    using assms by blast
+  have "sin(SIN_SIMPROC_ATOM x k) \<equiv> sin (x + k*pi)"
+    unfolding SIN_SIMPROC_ATOM_def by simp
+  also have "... \<equiv> sin (x + k'*(2*pi))"
+    using k'_expr by(simp add: algebra_simps)
   also have "... \<equiv> sin (x)" (is "?a \<equiv> ?b")
   proof -
     have "sin (x + k'*(2*pi)) = sin (x)" 
@@ -116,21 +163,47 @@ proof -
     then show "?a \<equiv> ?b"
       by auto
   qed
-  finally show "sin(SIN_SIMPROC_ATOM x k) \<equiv> sin (x)"
-    unfolding SIN_SIMPROC_ATOM_def
-    by auto
+  finally show "sin(SIN_SIMPROC_ATOM x k) = sin (x)"
+    by simp
 qed
+
+lemma rewrite_sine_odd:
+  assumes "odd k" 
+  shows "sin(SIN_SIMPROC_ATOM x k) \<equiv> -sin (x)" 
+proof(rule HOL.eq_reflection)
+  obtain k' where k'_expr: "k = 2 * k'+1"
+    using assms oddE by blast
+  have "sin(SIN_SIMPROC_ATOM x k) \<equiv> sin (x + k*pi)"
+    unfolding SIN_SIMPROC_ATOM_def by simp
+  also have "... \<equiv> sin (x + k'*(2*pi) + pi)"
+    using k'_expr by(simp add: algebra_simps)
+  also have "... \<equiv> -sin(x + k'*(2*pi))"
+    by simp
+  also have "... \<equiv> -sin (x)" (is "?a \<equiv> ?b")
+  proof -
+    have "sin (x + k'*(2*pi)) = sin (x)" 
+      using sin_cos_eq_iff by fastforce
+    then show "?a \<equiv> ?b"
+      by auto
+  qed
+  finally show "sin(SIN_SIMPROC_ATOM x k) = -sin (x)"
+    by simp
+qed
+
+subsection \<open>rewrite_sine\<close>
 
 lemma arg_cong_pure:
   assumes "x \<equiv> y"
   shows "f x \<equiv> f y"
   using assms by simp
 
-lemma 
-  assumes "sin (x + real_of_int 8 * pi) \<equiv> sin x"
-  shows "sin (x + 8 * pi) \<equiv> sin x"
-  apply(tactic \<open>Method.insert_tac @{context} @{thms assms} 1\<close>)
-  by simp
+lemma truth:
+  assumes "a \<equiv> True"
+  shows "a"
+  using assms by simp
+
+lemma even_to_odd: "even n \<equiv> False \<Longrightarrow> odd n"
+  by auto
 
 ML \<open>
 fun rewrite_sine ctxt ct =
@@ -145,47 +218,126 @@ fun rewrite_sine ctxt ct =
     val goal1 = Logic.mk_equals (sin_x,sin_ssa)
     val subst_lemma = @{thm arg_cong_pure} OF [sum_eq_ssa]
     val inst_lemma = Thm.instantiate' [SOME @{ctyp "real"}] [SOME @{cterm "sin::real\<Rightarrow>real"}] subst_lemma
-    
+
     val thm1 = Goal.prove ctxt [] [] goal1
-            (fn _ => asm_full_simp_tac (ctxt addsimps [inst_lemma] @ @{thms SIN_SIMPROC_ATOM_def add.commute add.assoc}) 1)
-    
+            (fn _ => Method.rule_tac ctxt [inst_lemma] [] 1)
     val (x,k) = case ssa of (@{term SIN_SIMPROC_ATOM} $ x' $ k') => (x',k')
                          | _ => raise TERM ("term should be simproc_atom",[Thm.term_of sum])
-    val (_,kint) = k |> HOLogic.dest_number
-    (* even case *)    
-    val goal2 = Logic.mk_equals (sin_ssa,@{term "sin::real\<Rightarrow>real"} $ x)
-    val tac = Thm.instantiate' [] [SOME (Thm.cterm_of ctxt k), 
-                                   SOME (Thm.cterm_of ctxt (HOLogic.mk_number HOLogic.intT (kint div 2)))] 
-                                   @{thm rewrite_sine_even}
-    val thm2 = Goal.prove ctxt [] [] goal2
-            (fn _ => Method.rule_tac ctxt [tac] [] 1
-                     THEN asm_full_simp_tac ctxt 1)
-    (* transitive *)
-    val goal = Logic.mk_equals (sin_x,@{term "sin::real\<Rightarrow>real"} $ x)
-    val thm3 = @{thm Pure.transitive} OF [thm1] OF [thm2]
-    val _ = @{print} thm3
-    val thm = Goal.prove ctxt [] [] goal
-            (fn _ => Method.insert_tac ctxt [thm3] 1
-                     THEN asm_full_simp_tac (ctxt addsimps @{thms algebra_simps}) 1)
+    val k_eq_0 = Thm.cterm_of ctxt (HOLogic.mk_eq (k,@{term "0::int"}))
+    val (_,is_zro) = Logic.dest_equals(Thm.prop_of (Simplifier.rewrite (put_simpset HOL_basic_ss ctxt addsimps 
+                      @{thms arith_simps rel_simps Pure.reflexive}) k_eq_0))
+    val thm = case is_zro of
+      @{term True} => NONE
+      | @{term False} =>
+        let
+          val parity = Thm.cterm_of ctxt (@{term "even::int \<Rightarrow> bool"} $ k)
+          val simp = Simplifier.rewrite (put_simpset HOL_basic_ss ctxt addsimps 
+                      @{thms arith_simps even_numeral even_zero odd_numeral odd_one}) parity
+          val (_,truth) = Logic.dest_equals(Thm.prop_of (simp))
+          val (thm2,final_term) =  case truth of 
+            @{term True} => 
+              let 
+                val final_term = @{term "sin::real\<Rightarrow>real"} $ x
+                val even = @{thm truth} OF [simp]
+                val goal2 = Logic.mk_equals (sin_ssa,final_term)   
+                val tac = Thm.instantiate' [] [SOME (Thm.cterm_of ctxt k)] @{thm rewrite_sine_even}
+                val simp_tac = tac OF [even]
+                val thm2 = Goal.prove ctxt [] [] goal2
+                          (fn _ => Method.rule_tac ctxt [simp_tac] [] 1)
+              in
+                (thm2,final_term)
+              end
+          | @{term False} => 
+              let 
+                val final_term = @{term "Groups.uminus_class.uminus::real\<Rightarrow>real"} $ (@{term "sin::real\<Rightarrow>real"} $ x)
+                val odd = @{thm even_to_odd} OF [simp]
+                val goal2 = Logic.mk_equals (sin_ssa,final_term)   
+                val tac = Thm.instantiate' [] [SOME (Thm.cterm_of ctxt k)] @{thm rewrite_sine_odd}
+                val simp_tac = tac OF [odd]
+                val thm2 = Goal.prove ctxt [] [] goal2
+                          (fn _ => Method.rule_tac ctxt [simp_tac] [] 1)
+              in
+                (thm2,final_term)
+              end
+          | _ => raise TERM ("could not decide parity of term", [k])
+      
+          val goal = Logic.mk_equals (sin_x,final_term)
+          val thm3 = @{thm Pure.transitive} OF [thm1] OF [thm2]
+          val thm = Goal.prove ctxt [] [] goal
+                  (fn _ => Method.rule_tac ctxt [thm3] [] 1)
+        in
+          SOME thm
+        end
+     | _ => raise TERM ("can not determine if k is not zero (to avoid reflexivity)",[x])
   in       
     thm
   end
 \<close>
+
+subsection \<open>rewrite_sine tests\<close>
 
 ML \<open>
 rewrite_sine @{context} @{cterm "sin((8::int)*pi+x)"}
 \<close>
 
 ML \<open>
+rewrite_sine @{context} @{cterm "sin(x+(8::int)*pi)"}
+\<close>
+
+ML \<open>
 rewrite_sine @{context} @{cterm "sin((2::int)*pi+x+(8::int)*pi)"}
 \<close>
 
+ML \<open>
+rewrite_sine @{context} @{cterm "sin((24::int)*pi+(2::int)*pi+x+(8::int)*pi)"}
+\<close>
 
-simproc_setup sine1 ("sin(x+a*pi+pi/2)") = \<open>K rewrite_sine\<close>
+ML \<open>
+rewrite_sine @{context} @{cterm "sin((8::int)*pi+x+(3::int)*pi)"}
+\<close>
+
+ML \<open>
+rewrite_sine @{context} @{cterm "sin((8::int)*pi+(5::int)*pi+x+(y+((3::int)*pi)+(3::int)*pi))"}
+\<close>
+
+ML \<open>
+rewrite_sine @{context} @{cterm "sin((8::int)*pi+(5::int)*pi+x+(y+(3::int)*pi))"}
+\<close>
 
 
+ML \<open>
+rewrite_sine @{context} @{cterm "sin(x+(8::int)*pi)"}
+\<close>
+
+section \<open>Experiments\<close>
+
+simproc_setup sine1 ("sin(x)") = \<open>K rewrite_sine\<close>
+
+ML \<open>
+rewrite_sine @{context} @{cterm "sin(x+(8::int)*pi)"}
+\<close>
+
+ML \<open>
+rewrite_sine @{context} @{cterm "sin((8::int)*pi+(5::int)*pi+x+(y+(3::int)*pi))"}
+\<close>
+
+ML \<open>
+Simplifier.rewrite (put_simpset HOL_basic_ss @{context} addsimps 
+                      @{thms arith_simps even_numeral even_zero odd_numeral odd_one rel_simps Pure.reflexive}) @{cterm "(0::int) = 0"}
+\<close>                                 
 
 
+lemma 
+  shows "sin(x+(8::int)*pi) = sin(x)"
+  using [[simp_trace, simp_trace_depth_limit = 100]]
+  by(tactic \<open>simp_tac (put_simpset HOL_basic_ss @{context} addsimprocs [@{simproc sine1}]) 1\<close>) 
+  
+lemma 
+  shows "sin(x+(8::int)*pi+(8::int)*pi) = sin(x)"
+  using [[simp_trace, simp_trace_depth_limit = 100]]
+  
+  apply(tactic \<open>simp_tac (put_simpset HOL_basic_ss @{context} addsimprocs [@{simproc sine1}]) 1\<close>) 
+  
 
 
 end
