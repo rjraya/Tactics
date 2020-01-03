@@ -1,0 +1,64 @@
+This is BibTeX, Version 0.99d (TeX Live 2017/Debian)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: report.aux
+The style file: biblatex.bst
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=20001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: report-blx.bib
+Database file #2: references.bib
+Biblatex version: 3.8
+Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+You've used 13 entries,
+            6268 wiz_defined-function locations,
+            1246 strings with 10157 characters,
+and the built_in function-call counts, 66653 in all, are:
+= -- 4530
+> -- 1396
+< -- 488
++ -- 1428
+- -- 451
+* -- 4679
+:= -- 6186
+add.period$ -- 0
+call.type$ -- 13
+change.case$ -- 283
+chr.to.int$ -- 33
+cite$ -- 24
+duplicate$ -- 6850
+empty$ -- 6318
+format.name$ -- 750
+if$ -- 14195
+int.to.chr$ -- 0
+int.to.str$ -- 35
+missing$ -- 0
+newline$ -- 367
+num.names$ -- 687
+pop$ -- 4089
+preamble$ -- 1
+purify$ -- 335
+quote$ -- 0
+skip$ -- 2468
+stack$ -- 0
+substring$ -- 7396
+swap$ -- 1796
+text.length$ -- 347
+text.prefix$ -- 12
+top$ -- 1
+type$ -- 420
+warning$ -- 0
+while$ -- 720
+width$ -- 0
+write$ -- 355

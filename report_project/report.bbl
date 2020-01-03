@@ -1,0 +1,371 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.9 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{nty/global//global/global}
+  \entry{blanchette}{inproceedings}{}
+    \name{author}{6}{}{%
+      {{hash=BJC}{%
+         family={Blanchette},
+         familyi={B\bibinitperiod},
+         given={Jasmin\bibnamedelima Christian},
+         giveni={J\bibinitperiod\bibinitdelim C\bibinitperiod},
+      }}%
+      {{hash=HJ}{%
+         family={H{\"o}lzl},
+         familyi={H\bibinitperiod},
+         given={Johannes},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=LA}{%
+         family={Lochbihler},
+         familyi={L\bibinitperiod},
+         given={Andreas},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=PL}{%
+         family={Panny},
+         familyi={P\bibinitperiod},
+         given={Lorenz},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=PA}{%
+         family={Popescu},
+         familyi={P\bibinitperiod},
+         given={Andrei},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=TD}{%
+         family={Traytel},
+         familyi={T\bibinitperiod},
+         given={Dmitriy},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \list{organization}{1}{%
+      {Springer}%
+    }
+    \strng{namehash}{BJC+1}
+    \strng{fullhash}{BJCHJLAPLPATD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{booktitle}{International Conference on Interactive Theorem Proving}
+    \field{pages}{93\bibrangedash 110}
+    \field{title}{Truly modular (co) datatypes for Isabelle/HOL}
+    \field{year}{2014}
+  \endentry
+
+  \entry{denecke2009universal}{book}{}
+    \name{author}{2}{}{%
+      {{hash=DK}{%
+         family={Denecke},
+         familyi={D\bibinitperiod},
+         given={Klaus},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=WSL}{%
+         family={Wismath},
+         familyi={W\bibinitperiod},
+         given={Shelly\bibnamedelima L},
+         giveni={S\bibinitperiod\bibinitdelim L\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {World Scientific}%
+    }
+    \strng{namehash}{DKWSL1}
+    \strng{fullhash}{DKWSL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{D}
+    \field{sortinithash}{D}
+    \field{title}{Universal algebra and coalgebra}
+    \field{year}{2009}
+  \endentry
+
+  \entry{sweden}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=ESH}{%
+         family={Einarsd{\'o}ttir},
+         familyi={E\bibinitperiod},
+         given={S{\'o}lr{\'u}n\bibnamedelima Halla},
+         giveni={S\bibinitperiod\bibinitdelim H\bibinitperiod},
+      }}%
+      {{hash=JM}{%
+         family={Johansson},
+         familyi={J\bibinitperiod},
+         given={Moa},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=PJA}{%
+         family={Pohjola},
+         familyi={P\bibinitperiod},
+         given={Johannes\bibnamedelima {\AA}man},
+         giveni={J\bibinitperiod\bibinitdelim {\AA}\bibinitperiod},
+      }}%
+    }
+    \list{organization}{1}{%
+      {Springer}%
+    }
+    \strng{namehash}{ESHJMPJA1}
+    \strng{fullhash}{ESHJMPJA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{E}
+    \field{sortinithash}{E}
+    \field{booktitle}{International Conference on Artificial Intelligence and
+  Symbolic Computation}
+    \field{pages}{70\bibrangedash 86}
+    \field{title}{Into the Infinite-Theory Exploration for Coinduction}
+    \field{year}{2018}
+  \endentry
+
+  \entry{geuvers2007iteration}{article}{}
+    \name{author}{2}{}{%
+      {{hash=GH}{%
+         family={Geuvers},
+         familyi={G\bibinitperiod},
+         given={Herman},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=PE}{%
+         family={Poll},
+         familyi={P\bibinitperiod},
+         given={Erik},
+         giveni={E\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Nijmegen: Radboud University Nijmegen}%
+    }
+    \strng{namehash}{GHPE1}
+    \strng{fullhash}{GHPE1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \field{title}{Iteration and primitive recursion in categorical terms}
+    \field{year}{2007}
+  \endentry
+
+  \entry{jacobs2005introduction}{article}{}
+    \name{author}{1}{}{%
+      {{hash=JB}{%
+         family={Jacobs},
+         familyi={J\bibinitperiod},
+         given={Bart},
+         giveni={B\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{JB1}
+    \strng{fullhash}{JB1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{J}
+    \field{sortinithash}{J}
+    \field{title}{Introduction to coalgebra}
+    \field{journaltitle}{Towards mathematics of states and observations}
+    \field{year}{2005}
+  \endentry
+
+  \entry{course}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=JRAK}{%
+         family={Jurriaan\bibnamedelima Rot},
+         familyi={J\bibinitperiod\bibinitdelim R\bibinitperiod},
+         given={Aleks\bibnamedelima Kissinger},
+         giveni={A\bibinitperiod\bibinitdelim K\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Radboud University}%
+    }
+    \strng{namehash}{JRAK1}
+    \strng{fullhash}{JRAK1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{J}
+    \field{sortinithash}{J}
+    \field{title}{Lecture notes in Coalgebra}
+    \field{year}{2018}
+    \warn{\item Invalid format of field 'month'}
+  \endentry
+
+  \entry{leino}{inproceedings}{}
+    \name{author}{2}{}{%
+      {{hash=LKRM}{%
+         family={Leino},
+         familyi={L\bibinitperiod},
+         given={K\bibnamedelima Rustan\bibnamedelima M},
+         giveni={K\bibinitperiod\bibinitdelim R\bibinitperiod\bibinitdelim
+  M\bibinitperiod},
+      }}%
+      {{hash=MM}{%
+         family={Moskal},
+         familyi={M\bibinitperiod},
+         given={Micha{\l}},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \list{organization}{1}{%
+      {Springer}%
+    }
+    \strng{namehash}{LKRMMM1}
+    \strng{fullhash}{LKRMMM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{booktitle}{International Symposium on Formal Methods}
+    \field{pages}{382\bibrangedash 398}
+    \field{title}{Co-induction simply}
+    \field{year}{2014}
+  \endentry
+
+  \entry{leinster}{book}{}
+    \name{author}{1}{}{%
+      {{hash=LT}{%
+         family={Leinster},
+         familyi={L\bibinitperiod},
+         given={Tom},
+         giveni={T\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Cambridge University Press}%
+    }
+    \strng{namehash}{LT1}
+    \strng{fullhash}{LT1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{title}{Basic category theory}
+    \field{volume}{143}
+    \field{year}{2014}
+  \endentry
+
+  \entry{mario}{thesis}{}
+    \name{author}{1}{}{%
+      {{hash=RM}{%
+         family={Román},
+         familyi={R\bibinitperiod},
+         given={Mario},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{RM1}
+    \strng{fullhash}{RM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{R}
+    \field{sortinithash}{R}
+    \field{title}{Category Theory and Lambda Calculus}
+    \list{institution}{1}{%
+      {Universidad de Granada}%
+    }
+    \verb{file}
+    \verb https://github.com/mroman42/ctlc
+    \endverb
+    \field{type}{Bachelor Thesis}
+    \field{year}{2018}
+    \warn{\item Invalid format of field 'month'}
+  \endentry
+
+  \entry{rutten}{article}{}
+    \name{author}{1}{}{%
+      {{hash=RJ}{%
+         family={Rutten},
+         familyi={R\bibinitperiod},
+         given={Jan},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Amsterdam: CWI}%
+    }
+    \strng{namehash}{RJ1}
+    \strng{fullhash}{RJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{R}
+    \field{sortinithash}{R}
+    \field{title}{The Method of Coalgebra: exercises in coinduction}
+    \field{year}{2019}
+  \endentry
+
+  \entry{smyth1982category}{article}{}
+    \name{author}{2}{}{%
+      {{hash=SMB}{%
+         family={Smyth},
+         familyi={S\bibinitperiod},
+         given={Michael\bibnamedelima B},
+         giveni={M\bibinitperiod\bibinitdelim B\bibinitperiod},
+      }}%
+      {{hash=PGD}{%
+         family={Plotkin},
+         familyi={P\bibinitperiod},
+         given={Gordon\bibnamedelima D},
+         giveni={G\bibinitperiod\bibinitdelim D\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {SIAM}%
+    }
+    \strng{namehash}{SMBPGD1}
+    \strng{fullhash}{SMBPGD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{number}{4}
+    \field{pages}{761\bibrangedash 783}
+    \field{title}{The category-theoretic solution of recursive domain
+  equations}
+    \field{volume}{11}
+    \field{journaltitle}{SIAM Journal on Computing}
+    \field{year}{1982}
+  \endentry
+
+  \entry{traytel}{thesis}{}
+    \name{author}{1}{}{%
+      {{hash=TD}{%
+         family={Traytel},
+         familyi={T\bibinitperiod},
+         given={Dmytro},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{TD1}
+    \strng{fullhash}{TD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{T}
+    \field{sortinithash}{T}
+    \field{title}{A category theory based (co)datatpye package for
+  Isabelle/HOL}
+    \list{institution}{1}{%
+      {TUM}%
+    }
+    \field{type}{Master Thesis}
+    \field{year}{2012}
+    \warn{\item Invalid format of field 'month'}
+  \endentry
+\enddatalist
+\endinput

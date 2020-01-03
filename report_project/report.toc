@@ -1,0 +1,73 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1}The Isabelle architecture and tactics}{2}{section.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.1}Programming in ML}{2}{subsection.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {1.1.1}Datatype declarations}{2}{subsubsection.1.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.2}Isabelle/Isar}{3}{subsection.1.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {1.2.1}Outer\_Syntax and Toplevel}{3}{subsubsection.1.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {1.2.2}Isar/VM}{4}{subsubsection.1.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.3}Isabelle/HOL}{4}{subsection.1.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.4}Isabelle/ML}{4}{subsection.1.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.5}Learning materials, configurations...}{4}{subsection.1.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {1.5.1}Setting up a debugger for ML code}{4}{subsubsection.1.5.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {1.5.2}Exploring finished theories}{5}{subsubsection.1.5.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {1.5.3}Exploring ML files}{5}{subsubsection.1.5.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {1.5.4}Some examples}{5}{subsubsection.1.5.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2}Coinduction}{5}{section.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.1}What is coinduction?}{6}{subsection.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {2.1.1}(Co)algebras}{6}{subsubsection.2.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {2.1.2}Relations between (co)algebras}{6}{subsubsection.2.1.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {2.1.3}Categories of (co)algebras}{7}{subsubsection.2.1.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {2.1.4}Initial algebras and terminal coalgebras}{7}{subsubsection.2.1.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {2.1.5}F-congruences and F-bisimulations}{8}{subsubsection.2.1.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {2.1.6}(Co)inductive principles}{9}{subsubsection.2.1.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.2}Functional programming and (co)algebras}{11}{subsection.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.3}Building initial and final algebras}{14}{subsection.2.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {2.3.1}Adamek's and Barr's theorems}{14}{subsubsection.2.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {2.3.2}Bounded endofunctor theorem}{16}{subsubsection.2.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3}Coinduction in Isabelle}{16}{section.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1}Functorial structure}{16}{subsection.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2}How to derive the functorial structure?}{18}{subsection.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.3}How to derive the (co)inductive principles?}{19}{subsection.3.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.3.1}Encoding $F$-algebras}{19}{subsubsection.3.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.3.2}Derived theorems and definitional framework for datatypes}{21}{subsubsection.3.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.3.3}Encoding $F$-coalgebras}{23}{subsubsection.3.3.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.3.4}Derived theorems and definitional framework for codatatypes}{23}{subsubsection.3.3.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.4}How could Stainless produce such (co)inductive principles?}{23}{subsection.3.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.5}Basic natural functors}{23}{subsection.3.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4}Applications}{24}{section.4}

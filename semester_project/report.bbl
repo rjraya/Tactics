@@ -1,0 +1,547 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.0 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{nty/global//global/global}
+  \entry{barr1990category}{book}{}
+    \name{author}{2}{}{%
+      {{hash=BM}{%
+         family={Barr},
+         familyi={B\bibinitperiod},
+         given={Michael},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=WC}{%
+         family={Wells},
+         familyi={W\bibinitperiod},
+         given={Charles},
+         giveni={C\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Prentice Hall New York}%
+    }
+    \strng{namehash}{BMWC1}
+    \strng{fullhash}{BMWC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{title}{Category theory for computing science}
+    \field{volume}{49}
+    \field{year}{1990}
+  \endentry
+
+  \entry{blanchette2014cardinals}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=BJC}{%
+         family={Blanchette},
+         familyi={B\bibinitperiod},
+         given={Jasmin\bibnamedelima Christian},
+         giveni={J\bibinitperiod\bibinitdelim C\bibinitperiod},
+      }}%
+      {{hash=PA}{%
+         family={Popescu},
+         familyi={P\bibinitperiod},
+         given={Andrei},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=TD}{%
+         family={Traytel},
+         familyi={T\bibinitperiod},
+         given={Dmitriy},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \list{organization}{1}{%
+      {Springer}%
+    }
+    \strng{namehash}{BJCPATD1}
+    \strng{fullhash}{BJCPATD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{booktitle}{International Conference on Interactive Theorem Proving}
+    \field{pages}{111\bibrangedash 127}
+    \field{title}{Cardinals in Isabelle/HOL}
+    \field{year}{2014}
+  \endentry
+
+  \entry{blanchette2015foundational}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=BJC}{%
+         family={Blanchette},
+         familyi={B\bibinitperiod},
+         given={Jasmin\bibnamedelima Christian},
+         giveni={J\bibinitperiod\bibinitdelim C\bibinitperiod},
+      }}%
+      {{hash=PA}{%
+         family={Popescu},
+         familyi={P\bibinitperiod},
+         given={Andrei},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=TD}{%
+         family={Traytel},
+         familyi={T\bibinitperiod},
+         given={Dmitriy},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \list{organization}{1}{%
+      {ACM}%
+    }
+    \strng{namehash}{BJCPATD1}
+    \strng{fullhash}{BJCPATD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{booktitle}{ACM SIGPLAN Notices}
+    \field{number}{9}
+    \field{pages}{192\bibrangedash 204}
+    \field{title}{Foundational extensible corecursion: a proof assistant
+  perspective}
+    \field{volume}{50}
+    \field{year}{2015}
+  \endentry
+
+  \entry{trinity}{misc}{}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+  \field{howpublished}{\url{https://ncatlab.org/nlab/show/computational+trinitarianism}}
+    \field{title}{Computational trinitarianism}
+    \field{year}{2017}
+  \endentry
+
+  \entry{denecke2009universal}{book}{}
+    \name{author}{2}{}{%
+      {{hash=DK}{%
+         family={Denecke},
+         familyi={D\bibinitperiod},
+         given={Klaus},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=WSL}{%
+         family={Wismath},
+         familyi={W\bibinitperiod},
+         given={Shelly\bibnamedelima L},
+         giveni={S\bibinitperiod\bibinitdelim L\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {World Scientific}%
+    }
+    \strng{namehash}{DKWSL1}
+    \strng{fullhash}{DKWSL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{D}
+    \field{sortinithash}{D}
+    \field{title}{Universal algebra and coalgebra}
+    \field{year}{2009}
+  \endentry
+
+  \entry{coq3}{misc}{}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{D}
+    \field{sortinithash}{D}
+    \field{howpublished}{\url{https://github.com/coq/coq/pull/7536}}
+    \field{title}{Deprecate positive coinductive types}
+    \field{year}{2018}
+  \endentry
+
+  \entry{sines}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=EM}{%
+         family={Eberl},
+         familyi={E\bibinitperiod},
+         given={Manuel},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{EM1}
+    \strng{fullhash}{EM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{E}
+    \field{sortinithash}{E}
+  \field{howpublished}{\url{https://stackoverflow.com/questions/58859417/rewriting-sine-using-simprocs-in-isabelle}}
+    \field{note}{[Online; accessed 01-01-2017]}
+    \field{title}{Rewriting sine using simprocs in Isabelle}
+    \field{year}{2019}
+  \endentry
+
+  \entry{explore}{misc}{}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{E}
+    \field{sortinithash}{E}
+  \field{howpublished}{\url{https://stackoverflow.com/questions/55028386/explore-finished-theories-in-isabelle}}
+    \field{note}{[Online; accessed 01-01-2017]}
+    \field{title}{Explore finished theories in Isabelle}
+    \field{year}{2019}
+  \endentry
+
+  \entry{navigate}{misc}{}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{E}
+    \field{sortinithash}{E}
+  \field{howpublished}{\url{https://stackoverflow.com/questions/59091016/exploring-ml-files-in-isabelle}}
+    \field{note}{[Online; accessed 01-01-2017]}
+    \field{title}{Exploring ML files in Isabelle}
+    \field{year}{2019}
+  \endentry
+
+  \entry{coq2}{misc}{}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{F}
+    \field{sortinithash}{F}
+    \field{howpublished}{\url{https://github.com/coq/coq/pull/10764}}
+    \field{title}{Fix loss of positive coinductive SR by restricting return
+  clauses}
+    \field{year}{2019}
+  \endentry
+
+  \entry{geuvers2007iteration}{article}{}
+    \name{author}{2}{}{%
+      {{hash=GH}{%
+         family={Geuvers},
+         familyi={G\bibinitperiod},
+         given={Herman},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=PE}{%
+         family={Poll},
+         familyi={P\bibinitperiod},
+         given={Erik},
+         giveni={E\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Nijmegen: Radboud University Nijmegen}%
+    }
+    \strng{namehash}{GHPE1}
+    \strng{fullhash}{GHPE1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \field{title}{Iteration and primitive recursion in categorical terms}
+    \field{year}{2007}
+  \endentry
+
+  \entry{jacobs2005introduction}{article}{}
+    \name{author}{1}{}{%
+      {{hash=JB}{%
+         family={Jacobs},
+         familyi={J\bibinitperiod},
+         given={Bart},
+         giveni={B\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{JB1}
+    \strng{fullhash}{JB1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{J}
+    \field{sortinithash}{J}
+    \field{title}{Introduction to coalgebra}
+    \field{journaltitle}{Towards mathematics of states and observations}
+    \field{year}{2005}
+  \endentry
+
+  \entry{milner1984use}{article}{}
+    \name{author}{1}{}{%
+      {{hash=MR}{%
+         family={Milner},
+         familyi={M\bibinitperiod},
+         given={Robin},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {The Royal Society London}%
+    }
+    \strng{namehash}{MR1}
+    \strng{fullhash}{MR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{number}{1522}
+    \field{pages}{411\bibrangedash 422}
+    \field{title}{The use of machines to assist in rigorous proof}
+    \field{volume}{312}
+    \field{journaltitle}{Philosophical Transactions of the Royal Society of
+  London. Series A, Mathematical and Physical Sciences}
+    \field{year}{1984}
+  \endentry
+
+  \entry{noschinskipattern}{article}{}
+    \name{author}{2}{}{%
+      {{hash=NL}{%
+         family={Noschinski},
+         familyi={N\bibinitperiod},
+         given={Lars},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=TC}{%
+         family={Traut},
+         familyi={T\bibinitperiod},
+         given={Christoph},
+         giveni={C\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{NLTC1}
+    \strng{fullhash}{NLTC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{N}
+    \field{sortinithash}{N}
+    \field{title}{Pattern-based Subterm Selection in Isabelle}
+  \endentry
+
+  \entry{boundednat}{misc}{}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{O}
+    \field{sortinithash}{O}
+  \field{howpublished}{\url{https://www.isa-afp.org/entries/BNF_Operations.html}}
+    \field{title}{Operations on Bounded Natural Functors}
+    \field{year}{2017}
+  \endentry
+
+  \entry{presentation}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=RR}{%
+         family={Raya},
+         familyi={R\bibinitperiod},
+         given={Rodrigo},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{RR1}
+    \strng{fullhash}{RR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{R}
+    \field{sortinithash}{R}
+  \field{howpublished}{\url{https://github.com/rjraya/SAV/blob/master/presentation/presentation.pdf}}
+    \field{note}{[Online; accessed 01-01-2017]}
+    \field{title}{Presentation of the paper "The use of machines to assist in
+  rigorous proof"}
+    \field{year}{2017}
+  \endentry
+
+  \entry{associativity}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=RR}{%
+         family={Raya},
+         familyi={R\bibinitperiod},
+         given={Rodrigo},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{RR1}
+    \strng{fullhash}{RR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{R}
+    \field{sortinithash}{R}
+  \field{howpublished}{\url{https://github.com/rjraya/Isabelle/blob/master/curves/Hales.thy}}
+    \field{note}{[Online; accessed 01-01-2017]}
+    \field{title}{Proof of associativity for elliptic Edwards curves}
+    \field{year}{2019}
+  \endentry
+
+  \entry{sineimplementation}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=RR}{%
+         family={Raya},
+         familyi={R\bibinitperiod},
+         given={Rodrigo},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{RR1}
+    \strng{fullhash}{RR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{R}
+    \field{sortinithash}{R}
+  \field{howpublished}{\url{https://github.com/rjraya/Tactics/blob/master/Experiment3.thy}}
+    \field{note}{[Online; accessed 01-01-2017]}
+    \field{title}{Sine tactic implementation}
+    \field{year}{2019}
+  \endentry
+
+  \entry{rutten}{article}{}
+    \name{author}{1}{}{%
+      {{hash=RJ}{%
+         family={Rutten},
+         familyi={R\bibinitperiod},
+         given={Jan},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Amsterdam: CWI}%
+    }
+    \strng{namehash}{RJ1}
+    \strng{fullhash}{RJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{R}
+    \field{sortinithash}{R}
+    \field{title}{The Method of Coalgebra: exercises in coinduction}
+    \field{year}{2019}
+  \endentry
+
+  \entry{smyth1982category}{article}{}
+    \name{author}{2}{}{%
+      {{hash=SMB}{%
+         family={Smyth},
+         familyi={S\bibinitperiod},
+         given={Michael\bibnamedelima B},
+         giveni={M\bibinitperiod\bibinitdelim B\bibinitperiod},
+      }}%
+      {{hash=PGD}{%
+         family={Plotkin},
+         familyi={P\bibinitperiod},
+         given={Gordon\bibnamedelima D},
+         giveni={G\bibinitperiod\bibinitdelim D\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {SIAM}%
+    }
+    \strng{namehash}{SMBPGD1}
+    \strng{fullhash}{SMBPGD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{number}{4}
+    \field{pages}{761\bibrangedash 783}
+    \field{title}{The category-theoretic solution of recursive domain
+  equations}
+    \field{volume}{11}
+    \field{journaltitle}{SIAM Journal on Computing}
+    \field{year}{1982}
+  \endentry
+
+  \entry{coq1}{misc}{}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{T}
+    \field{sortinithash}{T}
+    \field{howpublished}{\url{https://github.com/coq/coq/issues/6768}}
+    \field{title}{Towards a fix to the loss of subject reduction with
+  corecursion?}
+    \field{year}{2018}
+  \endentry
+
+  \entry{traytel}{thesis}{}
+    \name{author}{1}{}{%
+      {{hash=TD}{%
+         family={Traytel},
+         familyi={T\bibinitperiod},
+         given={Dmytro},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{TD1}
+    \strng{fullhash}{TD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{T}
+    \field{sortinithash}{T}
+    \field{title}{A category theory based (co)datatpye package for
+  Isabelle/HOL}
+    \list{institution}{1}{%
+      {TUM}%
+    }
+    \field{type}{Master Thesis}
+    \field{year}{2012}
+    \warn{\item Invalid format of field 'month'}
+  \endentry
+
+  \entry{cookbook}{misc}{}
+    \name{author}{1}{}{%
+      {{hash=UC}{%
+         family={Urban},
+         familyi={U\bibinitperiod},
+         given={Christian},
+         giveni={C\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{UC1}
+    \strng{fullhash}{UC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{U}
+    \field{sortinithash}{U}
+    \field{howpublished}{\url{https://nms.kcl.ac.uk/christian.urban/Cookbook/}}
+    \field{note}{[Online; accessed 01-01-2017]}
+    \field{title}{The Isabelle Cookbook}
+    \field{year}{2019}
+  \endentry
+
+  \entry{wenzel2002isabelle}{thesis}{}
+    \name{author}{1}{}{%
+      {{hash=WMM}{%
+         family={Wenzel},
+         familyi={W\bibinitperiod},
+         given={Markus\bibnamedelima M},
+         giveni={M\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{WMM1}
+    \strng{fullhash}{WMM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{W}
+    \field{sortinithash}{W}
+    \field{title}{Isabelle/Isar---a versatile environment for human-readable
+  formal proof documents}
+    \list{institution}{1}{%
+      {Technische Universit{\"a}t M{\"u}nchen}%
+    }
+    \field{type}{phdthesis}
+    \field{year}{2002}
+  \endentry
+
+  \entry{wolff2019my}{article}{}
+    \name{author}{1}{}{%
+      {{hash=WB}{%
+         family={Wolff},
+         familyi={W\bibinitperiod},
+         given={Burkhart},
+         giveni={B\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{WB1}
+    \strng{fullhash}{WB1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{W}
+    \field{sortinithash}{W}
+    \field{title}{My Personal, Ecclectic Isabelle Programming Manual}
+    \field{year}{2019}
+  \endentry
+\enddatalist
+\endinput
