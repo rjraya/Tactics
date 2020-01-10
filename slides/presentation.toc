@@ -1,0 +1,7 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\beamer@sectionintoc {2}{Tactical reasoning}{4}{0}{1}
+\defcounter {refsection}{0}\relax 
+\beamer@sectionintoc {3}{(Co)algebraic reasoning}{9}{0}{2}
+\defcounter {refsection}{0}\relax 
+\beamer@sectionintoc {4}{Conclusion and references}{21}{0}{3}

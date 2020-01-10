@@ -1,0 +1,18 @@
+\settowidth{\leftmargini}{\usebeamertemplate{itemize item}}
+\addtolength{\leftmargini}{\labelsep}
+\begin{itemize}
+\item A relation $R \subseteq S \times T$ is an \textbf{$F$-congruence} if there exists an $F$-algebra structure $(R,\gamma)$ such that the projections $\pi_i$ are $F$-homomorphisms:
+
+\begin{tikzcd}
+F(S) \arrow[d, "\alpha"] & F(R) \arrow[l, "F(\pi_1)",swap] \arrow[d, "\gamma",dashed] \arrow[r, "F(\pi_2)"] & F(T) \arrow[d, "\beta"]\\
+S  & R \arrow[l, "\pi_1"] \arrow[r, "\pi_2",swap] &  T
+\end{tikzcd}
+
+\item By reversing arrows: $F$-coalgebra, coalgebra homomorphism, category $Set_F$, terminal $F$-coalgebra, $F$-bisimulation.
+
+\item Diagonal of a set: $\Delta(A) = \{(a,a). a \in A\}$
+
+\item \textbf{Induction}: congruences on initial algebras contain $\Delta$.
+\item \textbf{Coinduction}: bisimulations on final coalgebras contain $\Delta$.
+\item Mathematical induction, streams (co)induction and least (greatest) fixed points characterizations are easy to derive.
+\end{itemize}

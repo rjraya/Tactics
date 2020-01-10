@@ -75,7 +75,7 @@ This section provides a good example for the section on structured proofs in the
 
 \subsection{Rewriting sines}
 
-I present a small tactic illustrating some common idioms for Isabelle/ML. The idea is to rewrite sine expressions whose arguments contain sums of multiples of $\pi$. The idea is to produce a \textit{simproc}. This simprocs are special rewriting procedures that are called by the simplifier to solve theory specific goals. Other examples, like a tactic to facilitate the application of Taylor theorem contribute to bridge the gap between mathematicians expectations and theorem proving tools. 
+I present a small tactic illustrating some common idioms for Isabelle/ML. The idea is to rewrite sine expressions whose arguments contain sums of multiples of $\pi$. I chose to encode this as a \textit{simproc}. These simprocs are special rewriting procedures called by the simplifier to solve theory-specific goals. Other examples, like a tactic to facilitate the application of Taylor theorem contribute to bridge the gap between mathematicians expectations and theorem proving tools. 
 
 The high-level idea of the tactic \cite{sines} is as follows:
 
@@ -86,7 +86,7 @@ The high-level idea of the tactic \cite{sines} is as follows:
 
  SIN\_SIMPROC\_ATOM x1 n1 + SIN\_SIMPROC\_ATOM x2 n2 = \\
  SIN\_SIMPROC\_ATOM (x1 + x2) (n1 + n2).
-\item In the end, I have rewritten the origin term to the form sin (SIN\_SIMPROC\_ATOM x n), and then I apply some suitable rule to that.
+\item In the end, I have rewritten the original term to the form sin (SIN\_SIMPROC\_ATOM x n), and then I apply some suitable rule to that.
 \end{enumerate}
 
 A conversion is essentially a function of type cterm $\to$ thm which takes a cterm ct and returns a theorem of the form ct $\equiv$ …, i.e. it's a form of deterministic rewriting (a conversion can also fail by throwing a CTERM exception, by convention). There are a lot of combinators for building and using these in Pure/conv.ML
@@ -106,7 +106,7 @@ F(A) \arrow[d, "\alpha"] \arrow[r, "F(f)"] & F(B) \arrow[d, "\beta"] \\
 A \arrow[r, "f"] & B 
 \end{tikzcd}
 
-One can form a category $Set^F$ whose objects are all $F$-algebras and its morphisms are the families of $F$-homomorphisms. Given an $F$-algebra $\mathcal{A} = (A,s)$, a subalgebra of $\mathcal{A}$ is given by a $S \subseteq A$ together with a morphism $\beta_S:F(S) \to S$ such that the inclusion $i: S \to A$ is an homomorphism. The notion of coalgebra, coalgebra homomorphism, category $Set_F$ of all coalgebras and subcoalgebra is obtained reversing the arrows in the above definitions. 
+One can form a category $Set^F$ whose objects are all $F$-algebras and its morphisms are the families of $F$-homomorphisms. Given an $F$-algebra $\mathcal{A} = (A,s)$, a subalgebra of $\mathcal{A}$ is given by a $S \subseteq A$ together with a morphism $\beta_S:F(S) \to S$ such that the inclusion $i: S \to A$ is an homomorphism. The notions of coalgebra, coalgebra homomorphism, category $Set_F$ of all coalgebras and subcoalgebra are obtained reversing the arrows in the above definitions. 
 
 An initial $F$-algebra is an initial object in $Set^F$. A terminal $F$-coalgebra is a terminal object in $Set_F$. As a consequence, if any of these exist, it is unique up to isomorphism. A classical result by Lambeck states that the structure mapping of an initial algebra (dually, a final coalgebra) is an isomorphism. As a consequence, the powerset functor $\mathcal{P}: Set \to Set$ cannot have initial or final coalgebras since their existence would contradict Cantor's theorem. 
 	
@@ -117,7 +117,7 @@ F(S) \arrow[d, "\alpha"] & F(R) \arrow[l, "F(\pi_1)",swap] \arrow[d, "\gamma",da
 S  & R \arrow[l, "\pi_1"] \arrow[r, "\pi_2",swap] &  T
 \end{tikzcd}
 
-dually, one gets the notion of $F$-bisimulation. If one defines the diagonal of a set $A$, as the set: \[\Delta(A) = \{(a,a). a \in A\}\], one can state the (co)induction principles as follows:
+dually, one gets the notion of $F$-bisimulation. If one defines the diagonal of a set $A$, as the set: \[\Delta(A) = \{(a,a). a \in A\}\] one can state the (co)induction principles as follows:
 
 \begin{itemize}
 	\item Induction: every congruence relation on an initial algebra contains the diagonal.
@@ -152,7 +152,7 @@ Geuvers \cite{geuvers2007iteration} gives a clear account on how iteration, prim
 	
 \begin{tikzcd}
 1 + \mathbb{N} \arrow[r, "F(f)"] \arrow[swap]{d}{[zero,succ]} & 1+X \arrow[d, "\alpha"] \\
-\mathbb{N} \arrow[r, "f",swap] & X
+\mathbb{N} \arrow[r, "\exists ! f",swap,dashed] & X
 \end{tikzcd}
 	
 That is, $\alpha \circ N(f) = f \circ [zero,succ]$ or equivalently $f(0) = \alpha(*)$ and $\forall x \in \mathbb{N}. f(x+1) = \alpha(f(x))$. By natural induction, there is a unique $f$ satisfying this definition.	Since $f$ is defined iterating over $\alpha$, it is sometimes denoted $iter(\alpha)$. More generally, we can see our initial algebra endowed with an iterator mapping $iter$ sending each $\alpha$ to the function $f$ it defines. 
@@ -168,7 +168,7 @@ If $g: 1 + B \times \mathbb{N} \to B$ is given, the above definition corresponds
 
 \begin{tikzcd}
 1 + \mathbb{N} \arrow[swap]{d}{[zero,succ]} \arrow[dashed]{r}{F \langle h,id \rangle} & 1 + B \times \mathbb{N} \arrow[d,"g"] \\
-\mathbb{N} \arrow[r, "h",swap, dashed] & B
+\mathbb{N} \arrow[r, "\exists ! h",swap, dashed] & B
 \end{tikzcd}
 
 In general, $h = \pi_1 \circ iter\langle g, in \circ F(\pi_2)\rangle$. Since $h$ is defined recurring to $g$, we write it $h = rec(g)$ and for any initial algebra we can establish a mapping $rec$ assigning to each extra parameter supplier $g$, the function $h$ it defines.
@@ -184,12 +184,12 @@ If $g: 1 + \mathbb{N} \to B$ is given, the above definition corresponds to the e
 
 \begin{tikzcd}
 1 + \mathbb{N} \arrow[swap]{d}{[zero,succ]} \arrow{dr}{g}  \\
-\mathbb{N} \arrow[r,"h",dashed] & B
+\mathbb{N} \arrow[r,"\exists ! h",dashed,swap] & B
 \end{tikzcd}
 
 Coiteration, corecursion and cocase analysis are encoded as the dual of the above notions.
 
-\subsection{Building initial and final algebras}
+\subsection{Building initial and final (co)algebras}
 
 In this section, I state some theorems that guarantee the existence of usual (co)datatypes. The first result is due to Adámek and Barr and can be seen as a generalization of Kleene's fixed-point theorem:
 
@@ -220,12 +220,12 @@ In a real proof assistant, the user specifies some type constructors, such as:
 'a List = Nil | Cons 'a ('a List) 
 \end{lstlisting}
 
-which can be understood as a fixed point equation $X = 1 + A \times X$ on types. The Isabelle's (co)induction package has to derive appropriate theorems for such an equation. Given such a user definition, how do we derive the corresponding functorial structure? Given the functorial structure, how do we derive in the logic the (co)induction principles, introduction rules and (co)case analysis? This study on \cite{traytel} and the practical implementation in \cite{boundednat} which shows in apply-style the rewriting steps performed by the definitional package. 
+which can be understood as a fixed point equation $X = 1 + A \times X$ on types. The Isabelle's (co)induction package has to derive appropriate theorems for such an equation. Given such a user definition, how do we derive the corresponding functorial structure? Given the functorial structure, how do we derive in the logic the (co)induction principles, introduction rules and (co)case analysis? This study can be found on \cite{traytel} and the practical implementation in \cite{boundednat} which shows in apply-style the rewriting steps performed by the definitional package. 
 
 
 \subsubsection{Functorial structure}
 
-HOL can be modeled as a category using the universe of types $U$ as objects and functions between types as morphisms. A type constructor $(\alpha_1,\ldots,\alpha_n)F$ together with a mapping \[\text{Fmap}: \overline{\alpha} \to \overline{\beta} \to \overline{\alpha} F \to \overline{\beta} F\] such that $\text{Fmap} \; \text{id} = \text{id}$ and $\text{Fmap} (\overline{g} \circ \overline{f}) = \text{Fmap} \, \overline{g} \circ \text{Fmap} \, \overline{f}$. Then, we say that $(\text{F}, \text{Fmap})$ is a functor whose action on objects is $\text{F}$ and on morphisms is $\text{Fmap}$. In order to formalize initial and final (co)algebras, the notion of functor is enriched into the notion of bounded natural functor. An n-ary bounded natural functor is a tuple $($F, Fmap, Fset, Fbd$)$ where:
+HOL can be modeled as a category using the universe of types $U$ as objects and functions between types as morphisms. A type constructor $(\alpha_1,\ldots,\alpha_n)F$ together with a mapping: \[\text{Fmap}: \overline{\alpha} \to \overline{\beta} \to \overline{\alpha} F \to \overline{\beta} F\] such that $\text{Fmap} \; \text{id} = \text{id}$ and $\text{Fmap} (\overline{g} \circ \overline{f}) = \text{Fmap} \, \overline{g} \circ \text{Fmap} \, \overline{f}$ gives the notion of functor $(\text{F}, \text{Fmap})$ whose action on objects is $\text{F}$ and on morphisms is $\text{Fmap}$. In order to formalize initial and final (co)algebras, the notion of functor is enriched into the notion of bounded natural functor. An n-ary bounded natural functor is a tuple $($F, Fmap, Fset, Fbd$)$ where:
 
 \begin{itemize}
 	\item $F$ is an n-ary type constructor.
@@ -248,7 +248,7 @@ satisfying the following:
 	$\forall x : \overline{\alpha} F, i \in {1,\ldots,n}. |\text{Fset}_i \, x | \le \text{Fbd}$
 \end{itemize}
 
-There is a key observation to this definition. The authors call it the \textit{shape and content} intuition. Indeed, if one writes the definition of natural transformation for the second axioms for the inclusion mapping $f = i$, one obtains that $\text{Fmap} \, i = i$. So inclusion lifts to the inclusion. Thus, the notion of subalgebra is greatly simplified in this context. If $(A,t)$ is a $F$-subalgebra of the algebra $(B,s)$, then the inclusion $i: A \to B$ is an $F$-algebra homomorphism and $\text{Fmap} \, i = i$ so the subalgebra equation simplifies to $s \circ i = i \circ t$ which implies that $t = s|_{F(A)}$. Thus, for a BNF, a subalgebra can be given by a subset together with a particular restriction of the structure mapping.
+There is a key observation to this definition. The authors call it the \textit{shape and content} intuition. Indeed, if one writes the definition of natural transformation for the second axiom for the inclusion mapping $f = i$, one obtains that $\text{Fmap} \, i = i$. So inclusion lifts to the inclusion. Thus, the notion of subalgebra is greatly simplified in this context. If $(A,t)$ is a $F$-subalgebra of the algebra $(B,s)$, then the inclusion $i: A \to B$ is an $F$-algebra homomorphism and $\text{Fmap} \, i = i$ so the subalgebra equation simplifies to $s \circ i = i \circ t$ which implies that $t = s|_{F(A)}$. Thus, for a BNF, a subalgebra can be given by a subset together with a particular restriction of the structure mapping.
 
 \subsubsection{Induction principle}
 
@@ -280,9 +280,9 @@ The naive approach cannot be encoded in HOL. First, one cannot quantify over inf
 
 \section{Conclusion}
 
-For a follower of computational trinitarianism \cite{trinity}, the design and implementation of proof assistants is the perfect playground mixing logic, language design and, as we have seen here, some notions of category theory. A proof assistant is not a programming language and thus, the focus is on the foundations and not on efficiency. I believe that category theory contribute to clarify these foundations and that some of the technology developed for proof assistants may influence future programming languages or software verifiers. 
+For a follower of computational trinitarianism \cite{trinity}, the design and implementation of proof assistants is the perfect playground mixing logic, language design and, as we have seen here, some notions of category theory. A proof assistant is not a programming language and thus, the focus is on the foundations and not on efficiency. I believe that category theory contributes to clarify these foundations and that some of the technology developed for proof assistants may influence future programming languages or software verifiers. 
 
-In this work, I have tried to move my understanding from the user level of the proof assistant Isabelle into the design of some of it features, namely tactical reasoning and its formalization of (co)datatypes. A natural continuation of this work would be the design of a system from scratch, focusing on the reasoning principles behind the system providing a modern implementation in Scala. 
+In this work, I have tried to move my understanding from the user level of the proof assistant Isabelle into the design of some of its features, namely tactical reasoning and its formalization of (co)datatypes. A natural continuation of this work would be the design of a system from scratch, focusing on the reasoning principles behind the system and providing a modern implementation in Scala. 
 
 
 \newpage
