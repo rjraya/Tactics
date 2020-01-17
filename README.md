@@ -4,4 +4,4 @@ This repository contains work for a semester project in Computer Science in the 
 
 My goal was to have an introduction to tactic reasoning in Isabelle as well as understand the categorical view on (co)induction principles. This (co)induction principles have been successfully implemented in Isabelle providing a (co)datatypes package that overcomes some soundness/limitations of other systems.
 
-
+You may look for the Isabelle/curves/Hales.thy file to see one tactic that I didn't include here. 
